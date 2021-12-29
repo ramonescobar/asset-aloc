@@ -17,7 +17,5 @@ def multiple_stocks(stocks, currency, start_date, end_date):
         yc = c + "-" + currency
         dfs.append(get_crypto(yc, start_date, end_date))
     dfm = reduce(lambda left, right: pd.merge(left, right, on=['Date'], how='outer'), dfs)
-    dfmu = dfm.reset_index().melt(id_vars=['Date'],
-                                  var_name='Crypto',
-                                  value_name='Price')
-    return dfmu
+
+    return dfm.reset_index()

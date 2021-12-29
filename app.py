@@ -86,7 +86,12 @@ def filter_table(ticker, currency, start_date, end_date):
     Input('store_info', 'data')
 )
 def update_table(data):
-    return data
+    dfmu = pd.DataFrame(data)
+    dfmu = dfmu.melt(id_vars=['Date'],
+                                  var_name='Crypto',
+                                  value_name='Price')
+
+    return dfmu.to_dict('records')
 
 
 if __name__ == '__main__':
